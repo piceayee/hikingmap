@@ -1,0 +1,197 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* 左側控制面板 */
+#controls {
+    width: 350px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* 允許內容過多時捲動 */
+}
+
+#controls h1, #controls h2 {
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+#filter-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* 地圖容器 */
+#map {
+    flex-grow: 1;
+    height: 100%;
+    z-index: 1; /* 確保地圖在最底層 */
+}
+
+/* 上傳與匯出按鈕樣式 */
+#upload-controls button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+#selectPhotosBtn {
+    background-color: #007bff;
+    color: white;
+}
+#exportTrailDataBtn {
+    background-color: #28a745;
+    color: white;
+}
+
+/* 照片列表 */
+#photoList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.photo-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.photo-item .thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.photo-info {
+    flex-grow: 1;
+}
+.photo-name {
+    font-weight: bold;
+    display: block;
+}
+.category-tags {
+    margin: 3px 0;
+}
+.photo-tag {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 10px;
+    border-radius: 3px;
+    color: white;
+    margin-right: 3px;
+}
+.go-to-marker {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+/* 類別標籤顏色 */
+.tag-red { background-color: #dc3545; }    /* 花磚＆裝飾 */
+.tag-orange { background-color: #fd7e14; } /* 洋樓＆房舍 */
+.tag-yellow { background-color: #ffc107; } /* 風獅爺 */
+.tag-green { background-color: #28a745; }  /* 軍事 */
+.tag-blue { background-color: #007bff; }   /* 其他 */
+.tag-purple { background-color: #6f42c1; } /* 登山紀錄 (新增) */
+.no-category { background-color: #6c757d; }
+
+/* Leaflet Popup 樣式 */
+.popup-content {
+    max-width: 300px;
+    font-size: 14px;
+}
+.popup-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 5px 0;
+    cursor: zoom-in;
+}
+.gps-link {
+    display: block;
+    margin-top: 5px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* 圖片放大 Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000; /* 確保在最上層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 90%;
+}
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* 登山紀錄自定義 Marker 圖標樣式 */
+.trail-marker-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #6f42c1; /* 紫色 */
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+/* 讓自定義圖標的底部尖端對準座標點 */
+.trail-marker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(12px); /* 調整垂直位置 */
+}
+.trail-marker-container::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid #6f42c1;
+}
