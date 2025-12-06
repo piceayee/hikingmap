@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登山點位紀錄地圖</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" crossorigin=""/>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js" crossorigin=""></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script> 
+    
+    <script src="https://unpkg.com/heic2any@0.0.12/dist/heic2any.min.js"></script>
+    </head>
+<body>
+
+    <div class="container">
+        <div id="controls">
+            <h1>登山點位紀錄</h1>
+            
+            <div id="upload-controls">
+                <h2>📸 登山紀錄上傳</h2>
+                <input type="file" id="photoUpload" accept="image/jpeg, .heic, .heif" multiple style="display: none;">
+                <button id="selectPhotosBtn">選擇登山照片 (JPEG/HEIC)</button>
+                <button id="exportTrailDataBtn" disabled>📤 匯出路線紀錄表 (CSV)</button>
+                <button id="exportTrailJsonBtn" disabled style="background-color: #8A2BE2; margin-top: 5px;">💾 匯出行程 JSON 檔</button>
+                
+                <hr style="margin: 15px 0;">
+                
+                <h2>🗺️ GPX 軌跡匯入</h2>
+                <input type="file" id="gpxUpload" accept=".gpx" style="display: none;">
+                <button id="selectGpxBtn" style="background-color: #008080;">選擇 GPX 軌跡檔</button>
+            </div>
+
+            <hr>
+
+            <h2>📷 照片列表</h2>
+            <div id="photoList">
+                </div>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close">×</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.3/heic2any.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
